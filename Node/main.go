@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+//链表的操作方式，就是修改next，以及遍历
+
 type Node struct {
 	Data int
 	Next *Node
