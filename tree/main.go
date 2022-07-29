@@ -29,6 +29,7 @@ func dfs(node *Node) {
 //访问跟节点
 //对跟节点的左子树先进行先序遍历
 //对跟节点的右子树进行先序遍历
+//根左右
 func xianxudfs(ernode *ErNode) {
 	fmt.Println(ernode.Value)
 	xianxudfs(ernode.LeftNode)
@@ -39,6 +40,7 @@ func xianxudfs(ernode *ErNode) {
 //先对跟节点左子树进行中序遍历
 //访问跟节点
 //对跟节点右子树进行中序遍历
+//左根右
 func zhongxudfs(ernode *ErNode) {
 	zhongxudfs(ernode.LeftNode)
 	fmt.Println(ernode.Value)
@@ -49,6 +51,7 @@ func zhongxudfs(ernode *ErNode) {
 //先对跟节点左子树进行后续遍历
 //对跟节点右子树进行后续遍历
 //访问跟节点
+//左右根
 func houxudfs(ernode *ErNode) {
 	houxudfs(ernode.LeftNode)
 	houxudfs(ernode.RightNode)
@@ -155,6 +158,32 @@ func cengxutree(ernode *ErNode) [][]string {
 	}
 	return m
 }
+
+//路径总和
+//使用深度优先来做
+
+//深度优先
+func erdfs(ernode *ErNode, num int){
+	if (ernode.left !=nil){
+		erdfs(ernode.left, num+ernode.LeftNode.Value)
+	}
+	if (ernode.right !=nil){
+		erdfs(ernode.right, num+ernode.RightNode)
+	}
+}
+
+//深度优先求路径总和
+func hasPathSum(ernode *ErNode, targetsum int) bool{
+	if root == nil {
+		return false
+	}
+	if (root.LeftNode == nil) && (root.RightNode == nil){
+		return targetsum - ernode.Value
+	}
+	return hasPathSum(root.LeftNode, targetsum-ernode.Value) || hasPathSum(root.RightNode, targetsum-ernode.Value)
+}
+
+//非递归版本的先中后序遍历
 
 func main() {
 	//创建树
